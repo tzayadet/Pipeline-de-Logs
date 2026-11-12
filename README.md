@@ -1,6 +1,8 @@
-# Log Pipeline
+# JSONL Detection Engine
 
 Motor de detección de eventos JSON mediante reglas YAML y expresiones regulares. Lee eventos JSON Lines desde stdin y emite alertas cuando una regla coincide.
+
+[![Python tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Container build](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
 
 ## Requisitos
 
@@ -14,7 +16,7 @@ python -m pip install -r requirements.txt
 ## Uso
 
 ```bash
-cat events.jsonl | python pipeline.py --rules rules.yaml
+cat events.jsonl | python jsonl_rule_engine.py --rules rules.yaml
 ```
 
 Cada línea de entrada debe ser un objeto JSON. Las reglas se definen como una lista YAML con `title`, `level` y `detection.selection.keyword`.
@@ -27,7 +29,7 @@ Cada línea de entrada debe ser un objeto JSON. Las reglas se definen como una l
 
 ## Alcance y limitaciones
 
-Este es un prototipo didáctico, no un SIEM ni un motor Sigma completo. Solo evalúa el campo `keyword` de la selección mediante regex sobre la representación JSON del evento. No implementa condiciones Sigma, correlación temporal, normalización, gestión de estado ni almacenamiento de alertas.
+Este es un prototipo didáctico de detección JSONL, no un SIEM ni un motor Sigma completo. Solo evalúa el campo `keyword` de la selección mediante regex sobre la representación JSON del evento. No implementa condiciones Sigma, correlación temporal, normalización, gestión de estado ni almacenamiento de alertas.
 
 Utilízalo con datos de laboratorio o registros que tengas autorización para procesar.
 
