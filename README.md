@@ -4,7 +4,7 @@ Prototipo de motor de detección que procesa eventos JSON Lines y aplica reglas 
 
 [![Tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Docker](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
 
-**Demo:** [probar showcase](https://tzayadet.github.io/Pipeline-de-Logs/) · **Código:** [jsonl_rule_engine.py](jsonl_rule_engine.py) · **Reglas:** [rules.yaml](rules.yaml)
+**Showcase source:** [docs/index.html](docs/index.html) · **Código:** [jsonl_rule_engine.py](jsonl_rule_engine.py) · **Reglas:** [rules.yaml](rules.yaml)
 
 La demo es una simulación estática en el navegador; el motor Python real se ejecuta localmente.
 
