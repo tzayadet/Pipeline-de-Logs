@@ -1,26 +1,31 @@
+<p align="center">
+  <img src="https://img.shields.io/badge/DETECTION_ENGINEERING-JSONL_RULE_ENGINE-101010?style=for-the-badge&labelColor=050805&color=00FF41" alt="JSONL detection engine"/>
+  <img src="https://img.shields.io/badge/PYTHON-YAML_%2F_REGEX-101010?style=for-the-badge&logo=python&logoColor=00FF41" alt="Python"/>
+</p>
+
 # JSONL Detection Engine
 
-A Python prototype that processes JSON Lines events and applies YAML-defined rules to generate detection alerts. The repository includes a static browser showcase; the actual engine runs locally.
+A lightweight Python prototype that processes JSON Lines events and applies YAML-defined rules to generate detection alerts. The repository includes a static browser showcase; the detection engine runs locally.
 
 <p align="center">
-  <a href="https://tzayadet.github.io/Pipeline-de-Logs/"><img src="https://img.shields.io/badge/SHOWCASE-OPEN-00a86b?style=flat-square" alt="Showcase"></a>
-  <a href="https://github.com/tzayadet/Pipeline-de-Logs"><img src="https://img.shields.io/badge/SOURCE-GITHUB-161b22?style=flat-square&logo=github" alt="Source"></a>
+  <a href="https://tzayadet.github.io/Pipeline-de-Logs/"><strong>PROJECT SHOWCASE ↗</strong></a> ·
+  <a href="https://github.com/tzayadet/Pipeline-de-Logs"><strong>SOURCE CODE</strong></a>
 </p>
 
 [![Tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Container build](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
 
-## What it does
+## Features
 
 - Reads JSONL events from standard input.
 - Loads detection rules from YAML.
 - Evaluates keyword patterns and regular expressions.
 - Emits structured alerts for matching events.
-- Includes a container build and automated tests.
+- Includes automated tests and a container build.
 
 ## Requirements
 
-- Python 3.11 or later.
-- PyYAML.
+- Python 3.11+
+- PyYAML
 
 ```bash
 python -m pip install -r requirements.txt
@@ -65,8 +70,8 @@ The [static showcase](https://tzayadet.github.io/Pipeline-de-Logs/) is a browser
 
 This is a small rule-based exercise, not a SIEM or a full Sigma implementation. It evaluates the `keyword` field using regular expressions over the JSON representation of each event. It does not provide temporal correlation, normalization, persistence or alert management.
 
-Use only lab data or logs you are authorized to process.
+Use only lab data or logs you are authorised to process.
 
 ## License
 
-See [LICENSE](LICENSE) for the repository's licensing terms.
+See [LICENSE](LICENSE).
