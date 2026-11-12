@@ -48,9 +48,15 @@ docker build -t jsonl-detection-engine .
 cat events.jsonl | docker run --rm -i jsonl-detection-engine
 ```
 
-## Publicación
+## Publicar el showcase
 
-El showcase está en `docs/index.html`. Para publicarlo, selecciona **Settings → Pages → Build and deployment → Source → GitHub Actions** y configura `ENABLE_PAGES=true` en **Settings → Secrets and variables → Actions → Variables**.
+El showcase estático se encuentra en [docs/index.html](docs/index.html). Para publicarlo:
+
+1. En **Settings → Pages**, selecciona **GitHub Actions** como origen.
+2. En **Settings → Secrets and variables → Actions → Variables**, crea `ENABLE_PAGES` con valor `true`.
+3. Ejecuta **Deploy Pipeline-de-Logs showcase to GitHub Pages** desde Actions.
+
+La demo es una simulación estática en el navegador; el motor Python real se ejecuta localmente.
 
 ## Alcance y limitaciones
 
