@@ -2,7 +2,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from pipeline import load_rules, match
+from jsonl_rule_engine import load_rules, match
 
 
 class PipelineTests(unittest.TestCase):
