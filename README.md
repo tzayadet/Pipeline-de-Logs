@@ -4,7 +4,9 @@ Prototipo de motor de detección que procesa eventos JSON Lines y aplica reglas 
 
 [![Tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Docker](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
 
-**Código:** [jsonl_rule_engine.py](jsonl_rule_engine.py) · **Reglas:** [rules.yaml](rules.yaml)
+**Demo:** [probar showcase](https://tzayadet.github.io/Pipeline-de-Logs/) · **Código:** [jsonl_rule_engine.py](jsonl_rule_engine.py) · **Reglas:** [rules.yaml](rules.yaml)
+
+La demo es una simulación estática en el navegador; el motor Python real se ejecuta localmente.
 
 ## Requisitos
 
@@ -45,6 +47,10 @@ La suite comprueba la carga de reglas, las coincidencias, las expresiones regula
 docker build -t jsonl-detection-engine .
 cat events.jsonl | docker run --rm -i jsonl-detection-engine
 ```
+
+## Publicación
+
+El showcase está en `docs/index.html`. Para publicarlo, selecciona **Settings → Pages → Build and deployment → Source → GitHub Actions** y configura `ENABLE_PAGES=true` en **Settings → Secrets and variables → Actions → Variables**.
 
 ## Alcance y limitaciones
 
