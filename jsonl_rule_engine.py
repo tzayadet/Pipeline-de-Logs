@@ -12,6 +12,8 @@ from pathlib import Path
 import yaml
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
+MAX_RULE_PATTERN_LENGTH = 256
+MAX_EVENT_BYTES = 1024 * 1024
 
 
 def load_rules(path: Path) -> list[dict]:
@@ -34,8 +36,22 @@ def match(event: dict, rule: dict) -> bool:
     pattern = selection.get("keyword")
     if not pattern:
         return False
+    pattern = str(pattern)
+    if len(pattern) > MAX_RULE_PATTERN_LENGTH:
+        logging.error(
+            "Rule %r exceeds the %d-character pattern limit",
+            rule.get("title", "unnamed"),
+            MAX_RULE_PATTERN_LENGTH,
+        )
+        return False
+
+    serialized_event = json.dumps(event, ensure_ascii=False)
+    if len(serialized_event.encode("utf-8")) > MAX_EVENT_BYTES:
+        logging.warning("Event exceeds the %d-byte processing limit", MAX_EVENT_BYTES)
+        return False
+
     try:
-        return re.search(str(pattern), json.dumps(event, ensure_ascii=False), re.IGNORECASE) is not None
+        return re.search(pattern, serialized_event, re.IGNORECASE) is not None
     except re.error as exc:
         logging.error("Invalid regex in rule %r: %s", rule.get("title", "unnamed"), exc)
         return False
