@@ -58,6 +58,22 @@ class PipelineTests(unittest.TestCase):
         self.assertFalse(match({"message": "event"}, {"detection": None}))
         self.assertFalse(match({"message": "event"}, {"detection": {"selection": None}}))
 
+    def test_oversized_rule_pattern_is_rejected(self):
+        rule = {
+            "title": "oversized",
+            "detection": {"selection": {"keyword": "a" * 257}},
+        }
+        with self.assertLogs(level="ERROR"):
+            self.assertFalse(match({"message": "event"}, rule))
+
+    def test_oversized_event_is_skipped(self):
+        import jsonl_rule_engine
+
+        event = {"message": "x" * (jsonl_rule_engine.MAX_EVENT_BYTES + 1)}
+        rule = {"detection": {"selection": {"keyword": "event"}}}
+        with self.assertLogs(level="WARNING"):
+            self.assertFalse(match(event, rule))
+
 
 if __name__ == "__main__":
     unittest.main()
