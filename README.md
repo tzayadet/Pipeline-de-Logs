@@ -19,6 +19,7 @@ A lightweight Python prototype that processes JSON Lines events and applies YAML
 - Reads JSONL events from standard input.
 - Loads detection rules from YAML.
 - Evaluates keyword patterns and regular expressions.
+- Limits rule patterns to 256 characters and serialized events to 1 MiB.
 - Emits structured alerts for matching events.
 - Includes automated tests and a container build.
 
@@ -68,7 +69,7 @@ The [static showcase](https://tzayadet.github.io/Pipeline-de-Logs/) is a browser
 
 ## Scope and limitations
 
-This is a small rule-based exercise, not a SIEM or a full Sigma implementation. It evaluates the `keyword` field using regular expressions over the JSON representation of each event. It does not provide temporal correlation, normalization, persistence or alert management.
+This is a small rule-based exercise, not a SIEM or a full Sigma implementation. It evaluates the `keyword` field using regular expressions over the JSON representation of each event. Patterns longer than 256 characters and serialized events larger than 1 MiB are skipped. It does not provide temporal correlation, normalization, persistence or alert management.
 
 Use only lab data or logs you are authorised to process.
 
