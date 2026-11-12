@@ -31,6 +31,15 @@ Este es un prototipo didáctico, no un SIEM ni un motor Sigma completo. Solo eva
 
 Utilízalo con datos de laboratorio o registros que tengas autorización para procesar.
 
+## Pruebas
+
+```bash
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+```
+
+Las pruebas cubren la carga de reglas YAML, la coincidencia de patrones, las expresiones regulares inválidas y las estructuras malformadas.
+
 ## Docker
 
 ```bash
