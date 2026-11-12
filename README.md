@@ -1,45 +1,46 @@
 # JSONL Detection Engine
 
-Prototipo de motor de detección que procesa eventos JSON Lines y aplica reglas YAML para generar alertas.
+A Python prototype that processes JSON Lines events and applies YAML-defined rules to generate detection alerts. The repository includes a static browser showcase; the actual engine runs locally.
 
-[![Tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Docker](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
+<p align="center">
+  <a href="https://tzayadet.github.io/Pipeline-de-Logs/"><img src="https://img.shields.io/badge/SHOWCASE-OPEN-00a86b?style=flat-square" alt="Showcase"></a>
+  <a href="https://github.com/tzayadet/Pipeline-de-Logs"><img src="https://img.shields.io/badge/SOURCE-GITHUB-161b22?style=flat-square&logo=github" alt="Source"></a>
+</p>
 
-**Showcase source:** [docs/index.html](docs/index.html) · **Código:** [jsonl_rule_engine.py](jsonl_rule_engine.py) · **Reglas:** [rules.yaml](rules.yaml)
+[![Tests](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/python-syntax.yml) · [![Container build](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml/badge.svg)](https://github.com/tzayadet/Pipeline-de-Logs/actions/workflows/container-build.yml)
 
-La demo es una simulación estática en el navegador; el motor Python real se ejecuta localmente.
+## What it does
 
-## Requisitos
+- Reads JSONL events from standard input.
+- Loads detection rules from YAML.
+- Evaluates keyword patterns and regular expressions.
+- Emits structured alerts for matching events.
+- Includes a container build and automated tests.
 
-- Python 3.11 o superior.
+## Requirements
+
+- Python 3.11 or later.
 - PyYAML.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-## Uso
+## Run locally
 
-Envía eventos JSONL por la entrada estándar:
+Pipe newline-delimited JSON events into the engine:
 
 ```bash
 cat events.jsonl | python jsonl_rule_engine.py --rules rules.yaml
 ```
 
-Cada línea debe contener un objeto JSON. Las reglas se definen en YAML con los campos `title`, `level` y `detection.selection.keyword`.
+Each line must contain a JSON object. Rules use YAML fields such as `title`, `level` and `detection.selection.keyword`.
 
-Ejemplo de evento:
+Example event:
 
 ```json
 {"event":"authentication_failed","message":"Failed password for test"}
 ```
-
-## Pruebas
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-La suite comprueba la carga de reglas, las coincidencias, las expresiones regulares inválidas y las entradas malformadas.
 
 ## Docker
 
@@ -48,22 +49,24 @@ docker build -t jsonl-detection-engine .
 cat events.jsonl | docker run --rm -i jsonl-detection-engine
 ```
 
-## Publicar el showcase
+## Tests
 
-El showcase estático se encuentra en [docs/index.html](docs/index.html). Para publicarlo:
+```bash
+python -m unittest discover -s tests -v
+```
 
-1. En **Settings → Pages**, selecciona **GitHub Actions** como origen.
-2. En **Settings → Secrets and variables → Actions → Variables**, crea `ENABLE_PAGES` con valor `true`.
-3. Ejecuta **Deploy Pipeline-de-Logs showcase to GitHub Pages** desde Actions.
+The test suite covers rule loading, matching, invalid regular expressions and malformed input.
 
-La demo es una simulación estática en el navegador; el motor Python real se ejecuta localmente.
+## Showcase and deployment
 
-## Alcance y limitaciones
+The [static showcase](https://tzayadet.github.io/Pipeline-de-Logs/) is a browser simulation. It does not run the Python engine or process uploaded logs. GitHub Pages deployment is defined in `.github/workflows/pages.yml`; enable Pages with GitHub Actions and set the `ENABLE_PAGES=true` Actions variable before deployment.
 
-Es un ejercicio de detección sobre eventos JSONL, no un SIEM ni una implementación completa de Sigma. Evalúa el campo `keyword` mediante expresiones regulares sobre la representación JSON del evento. No incluye correlación temporal, normalización, persistencia ni gestión de alertas.
+## Scope and limitations
 
-Utiliza datos de laboratorio o registros que tengas autorización para procesar.
+This is a small rule-based exercise, not a SIEM or a full Sigma implementation. It evaluates the `keyword` field using regular expressions over the JSON representation of each event. It does not provide temporal correlation, normalization, persistence or alert management.
 
-## Licencia
+Use only lab data or logs you are authorized to process.
 
-Consulta [LICENSE](LICENSE).
+## License
+
+See [LICENSE](LICENSE) for the repository's licensing terms.
