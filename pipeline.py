@@ -19,12 +19,18 @@ def load_rules(path: Path) -> list[dict]:
         rules = yaml.safe_load(handle) or []
     if not isinstance(rules, list):
         raise ValueError("Rules file must contain a YAML list")
-    return [rule for rule in rules if isinstance(rule, dict)]
+    if any(not isinstance(rule, dict) for rule in rules):
+        raise ValueError("Every detection rule must be a YAML mapping")
+    return rules
 
 
 def match(event: dict, rule: dict) -> bool:
     detection = rule.get("detection", {})
+    if not isinstance(detection, dict):
+        return False
     selection = detection.get("selection", {})
+    if not isinstance(selection, dict):
+        return False
     pattern = selection.get("keyword")
     if not pattern:
         return False
