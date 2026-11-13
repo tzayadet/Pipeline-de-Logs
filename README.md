@@ -8,7 +8,7 @@
 A lightweight Python prototype that processes JSON Lines events and applies YAML-defined rules to generate detection alerts. The repository includes a static browser showcase; the detection engine runs locally.
 
 <p align="center">
-  <a href="https://tzayadet.github.io/Pipeline-de-Logs/"><strong>PROJECT SHOWCASE ↗</strong></a> ·
+  <a href="https://tzayadet.github.io/Pipeline-de-Logs/"><strong>LIVE DEMO ↗</strong></a> ·
   <a href="https://github.com/tzayadet/Pipeline-de-Logs"><strong>SOURCE CODE</strong></a>
 </p>
 
@@ -65,7 +65,7 @@ The test suite covers rule loading, matching, invalid regular expressions and ma
 
 ## Showcase and deployment
 
-The [static showcase](https://tzayadet.github.io/Pipeline-de-Logs/) is a browser simulation. It does not run the Python engine or process uploaded logs. GitHub Pages deployment is defined in `.github/workflows/pages.yml`; enable Pages with GitHub Actions and set the `ENABLE_PAGES=true` Actions variable before deployment.
+The [static showcase](https://tzayadet.github.io/Pipeline-de-Logs/) is a browser simulation. It does not run the Python engine or process uploaded logs. GitHub Pages deployment is defined in `.github/workflows/pages.yml` and publishes only the static browser showcase.
 
 ## Scope and limitations
 
